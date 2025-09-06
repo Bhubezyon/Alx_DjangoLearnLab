@@ -21,3 +21,11 @@ def librarian_for_library(library_name):
         return library.librarian
     except Library.DoesNotExist:
         return None
+    
+from relationship_app.models import Librarian
+
+def get_librarian_by_name(librarian_name):
+    try:
+        return Librarian.objects.get(library=librarian_name)
+    except Librarian.DoesNotExist:
+        return None
