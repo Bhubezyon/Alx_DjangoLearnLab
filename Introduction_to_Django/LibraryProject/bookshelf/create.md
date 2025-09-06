@@ -1,4 +1,11 @@
-from bookshelf.models import Book
-book = Book.object.create(title="1984", author="George Orwell", publication_year=1949)
-book
-# <Book: 1984 by Goerge Orwell (1949)>
+###     creating a Book Instance
+
+'''python
+Book.objects.create(
+    title="Clean Code",
+    author="Robert C. Martin",
+    published_date="2008-08-01",
+    isbn="9780132350884",
+    pages=464,
+    language="English"
+)
