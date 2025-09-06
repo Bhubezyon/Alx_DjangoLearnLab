@@ -49,3 +49,28 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
 ]
+
+from django.shortcuts import render, get_object_or_404, redirect
+from relationship_app.models import Library, Book, Author
+from relationship_app.forms import BookForm, AuthorForm, LibraryForm
+
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books')
+    else:
+        form = BookForm()
+    return render(request, 'relationship_app/add_book.html', {'form': form})
+
+def edit_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books')
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'relationship_app/edit_book.html', {'form': form})
