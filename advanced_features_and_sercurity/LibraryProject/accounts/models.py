@@ -34,3 +34,23 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+# advanced_features_and_sercurity/LibraryProject/accounts/admin.py
+
+from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    published_date = models.DateField()
+    isbn = models.CharField(max_length=13, unique=True)
+    pages = models.IntegerField()
+    cover_image = models.ImageField(upload_to='book_covers/', null=True, blank=True)
+    language = models.CharField(max_length=30)
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
+        ]
