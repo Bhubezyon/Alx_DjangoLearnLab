@@ -1,1 +1,0 @@
-# relationship_apps/__init__.py
