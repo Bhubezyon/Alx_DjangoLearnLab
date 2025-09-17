@@ -1,3 +1,6 @@
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
+# advanced_features_and_sercurity/LibraryProject/LibraryProject/settings.py
+
 """
 Django settings for LibraryProject project.
 

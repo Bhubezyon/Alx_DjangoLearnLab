@@ -1,4 +1,4 @@
-from djando.db import models
+from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 from django import settings
 from django.contrib.auth.models import UserManager, BaseUserManager
@@ -25,10 +25,10 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, email, password, **extra_fields)
 
 class CustomUser(AbstractUser):
-
-    date_of_birth = models.DateField()
-    profile_photo = models.ImageField()
+    date_of_birth = models.DateField(null=True, blank=True)
+    profile_photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
     objects = CustomUserManager()
+
     def __str__(self):
         return self.username
 
