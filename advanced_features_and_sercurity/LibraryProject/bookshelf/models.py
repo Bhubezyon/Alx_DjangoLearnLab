@@ -1,3 +1,6 @@
+AUTH_USER_MODEL = 'accounts.CustomUser'
+# advanced_features_and_sercurity/LibraryProject/bookshelf/models.py
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 

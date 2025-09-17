@@ -1,3 +1,6 @@
+AUTH_USER_MODEL = 'accounts.CustomUser'
+# advanced_features_and_sercurity/LibraryProject/bookshelf/settings.py
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
