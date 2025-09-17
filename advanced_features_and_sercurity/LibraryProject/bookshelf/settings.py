@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 # advanced_features_and_sercurity/LibraryProject/bookshelf/settings.py
 user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
