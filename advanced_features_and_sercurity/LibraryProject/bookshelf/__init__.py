@@ -1,1 +1,1 @@
-# relationship_app/__init__.py
+# bookshelf_app/__init__.py

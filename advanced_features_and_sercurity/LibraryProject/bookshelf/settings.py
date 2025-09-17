@@ -25,16 +25,24 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # LibraryProject/settings.py
 
-Debug = False 
+# SECURITY WARNING: don't run with debug turned on in production!
+Debug = False
 
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
+# Browser-side protections
+SECURE_BROWSER_XSS_FILTER = True # Enable the browser's XSS filtering and prevent reflected XSS attacks
+SECURE_CONTENT_TYPE_NOSNIFF = True # Prevent MIME type sniffing
+X_FRAME_OPTIONS = 'DENY' # Prevent clickjacking by disallowing the site to be framed
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# Cookie security
+CSRF_COOKIE_SECURE = True # Ensure CSRF cookies are only sent over HTTPS
+SESSION_COOKIE_SECURE = True # Ensure session cookies are only sent over HTTPS
 
-# Optional: Add CSP middleware for enhanced security
+# Optional: HSTS for HTTPS enforcement
+SECURE_HSTS_SECONDS = 31536000  # One year in seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True # Allow site to be included in browsers' HSTS preload list
+
+# Optional: middleware for Content Security Policy (CSP)
 INSTALLED_APPS += ['csp']
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,3 +80,7 @@ SECURE_BROWSER_XSS_FILTER = True # Enable the browser's XSS filtering and preven
 
 # Optional: Set ALLOWED_HOSTS for production
 ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
+
+# CSRF_COOKIESECURE ensures CSRF cookies are only sent over HTTPS
+
+# Note: If you need to configure nginx, place the server block in your nginx configuration file, not in settings.py.
