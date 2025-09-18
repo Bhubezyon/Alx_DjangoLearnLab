@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User, AbstractUser, BaseUserManager
+from django.contrib.auth.models import user, AbstractBaseUser, BaseUserManager, AbstractUser
 from django.db import models
 from django.conf import settings
 # Create your models here.
