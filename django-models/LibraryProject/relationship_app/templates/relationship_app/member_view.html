@@ -1,0 +1,10 @@
+<h1>Welcome, Member!</h1>
+<p>You can browse and borrowbooks.</p>
+
+<!-- bookshelf/template/bookshelf/form_example.html -->
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+    </form>

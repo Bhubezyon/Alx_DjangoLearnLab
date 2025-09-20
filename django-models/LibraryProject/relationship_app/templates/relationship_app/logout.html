@@ -1,0 +1,20 @@
+<!-- logout.html -->
+<!DOCTTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+</head>
+<body>
+    <h1>You have been logged out</h1>
+    <a href="{% url 'login' %}">Login again</a>
+</body>
+</html>  
+
+<!-- bookshelf/template/bookshelf/form_example.html -->
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+    </form>
