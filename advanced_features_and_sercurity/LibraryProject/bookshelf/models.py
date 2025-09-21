@@ -27,4 +27,4 @@ class CustomUser(AbstractUser):
     USER_FIELDS = 'username'
 
     def __str__(self):
-        return self.usernames
+        return self.username
