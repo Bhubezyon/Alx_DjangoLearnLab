@@ -4,7 +4,7 @@ from .views import BookList, BookViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('path/', include('api.urls')), 
+    path('api/', include('api.urls')), 
 ]
 
 router = DefaultRouter()
