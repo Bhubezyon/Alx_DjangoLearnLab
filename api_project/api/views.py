@@ -9,6 +9,6 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated] # Secure the endpoint
 
-class BookList(ListAPIView):
+class BookList(generics.ListAPIView):
     queryset = Book.object.all()
     serializer_class = BookSerializer
