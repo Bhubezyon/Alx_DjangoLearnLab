@@ -10,3 +10,10 @@
 
 - Authenticated usres can create, update, and delete.
 - Unauthenticated users can read only
+
+## Query Parameters
+
+- '?author=1' - Filter by author ID
+- '?search=Django' - Search by title or author name
+- '?ordering=title' - Order by title
+- '?ordering=-publication_year' - Order by publication year descending
