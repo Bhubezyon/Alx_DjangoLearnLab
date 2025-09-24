@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Author, Book
 from datetime import datetime
 
@@ -22,6 +23,31 @@ class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = ['name', 'books']
+
+class BookCreateView(generics.CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    def perform_create(self, serializer):
+        # Example: log or modify data before saving
+        serializer.save()
+
+class BookUpdateView(generics.UpdateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    def perform_update(self, serializer):
+        # Example: log or modify data before updating
+        serializer.save()
+
+class BookListView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    def get_queryset(self)
+    return Book.objects.fitler(publicatio_year__lte=2025)
+
+class BookDetailView(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 # Bookserializer includes all fields and validates publication year.
 # AuthorSerialzer nests BookSerializer to show all books by an author.
