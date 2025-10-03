@@ -1,4 +1,11 @@
 /* blog/static/blog/css/styles.css */
+
+.auth-form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
