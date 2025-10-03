@@ -31,20 +31,13 @@ urlpatterns = [
     path("register/", register_view, name="register"),
     path("profile/", profile_view, name="profile"),
     path("search/", views.search_view, name="search"),
-]
-
-urlpatterns += [
-    path("tag/<slug:tag_slug>/", PostByTagListView.as_view(), name="tag_post"),
+    path("tags/<slug:tag_slug>/", PostByTagListView.as_view(), name="tag_post"),
 ]
 
 class PostByTagListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
-    paginate_by = 5
 
     def get_queryset(self):
-        tag_slug = self.kwargs.get("tag_slug")
-        if tag_slug:
-            return Post.objects.filter(tags__slug=self.kwargs["tag_slug"]).order_by("-created_at")
-        return Post.objects.all().order_by("-created_at")
+            return Post.objects.filter(tags__slug=self.kwargs["tag_slug"])
