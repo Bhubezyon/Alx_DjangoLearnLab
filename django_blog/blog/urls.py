@@ -30,6 +30,7 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(template_name="registration/logout.html"), name="logout"),
     path("register/", register_view, name="register"),
     path("profile/", profile_view, name="profile"),
+    path("search/", views.search_view, name="search"),
 ]
 
 urlpatterns += [
