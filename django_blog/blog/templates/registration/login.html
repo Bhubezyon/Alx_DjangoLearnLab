@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
-<script src="{% static 'js/auth.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script> <!-- optional -->
   <h2>Login</h2>
   <form method="post">{% csrf_token %}
     {% csrf_token %}
