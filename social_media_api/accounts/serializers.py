@@ -3,15 +3,11 @@ from .models import CustomUser
 from django.contrib.auth import IsAuthenticated
 from rest_framework.authtoken.models import Token
 
-class get_user_model():
-    get_user_model = objects_create_user()
-    return get_user_model
-
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     class Meta:
-        model = CustomUser
+        model = get_user_model()
         fields = ('username', 'email', 'password', 'bio', 'profile_picture')
         extra_kwargs = {'password': {'write_only': True}}
 
