@@ -4,7 +4,7 @@ from django.contrib.auth import IsAuthenticated
 from rest_framework.authtoken.models import Token
 
 class get_user_model():
-    user = get_user_model()
+    user = objects_create_user()
     return user
 
 class RegisterSerializer(serializers.ModelSerializer):
