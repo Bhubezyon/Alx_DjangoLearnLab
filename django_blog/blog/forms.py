@@ -30,3 +30,5 @@ class PostForm(forms.ModelForm):
         widgets = {
             'tags': TagWidget(),
         }
+
+django.middleware.csrf.CsrfViewMiddleware

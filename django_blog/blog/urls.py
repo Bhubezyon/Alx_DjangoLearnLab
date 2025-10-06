@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from django.contrib.auth import views as auth_views
 from .views import register_view, profile_view
 from .views import PostByTagListView
@@ -41,3 +42,12 @@ class PostByTagListView(ListView):
 
     def get_queryset(self):
             return Post.objects.filter(tags__slug=self.kwargs["tag_slug"])
+
+app_name = "blog"
+
+urlpaterns += [
+    path('login/', view.login_view, name='login'),
+    path('logout/', view.logout_view, name='logout'),
+    path('register/', view.register_view, name='register'),
+    path('profile/', view.profile_view, name='profile'),
+]

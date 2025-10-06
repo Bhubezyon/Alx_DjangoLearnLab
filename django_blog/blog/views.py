@@ -32,6 +32,10 @@ def profile_view(request):
         messages.success(request, "Profile updated successfully.")
         return render(request, "registration/profile.html", {"user": request.user})
 
+    else:
+        form = Profileform(instance=request.user)
+        return render(request, "registration/profile.html", {"form": form})
+
 class PostListView(ListView):
     model = Post
     template_name = 'blog/post_list.html'
