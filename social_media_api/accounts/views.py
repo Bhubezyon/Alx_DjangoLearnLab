@@ -1,8 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response    
-from rest_framework import status
+from rest_framework import status, permissions
+from django.contrib.auth import get_user_model
 from .serializers import RegisterSerializer, LoginSerializer
 from rest_framework.permissions import AllowAny 
+
+User = get_user_model()
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -23,3 +26,25 @@ class LoginView(APIView):
             user = serializer.validated_data
             return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class FollowUserView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, user_id):
+        try:
+            target_user = User.object.get(id=user_id)
+            request.user.following.add(target_user)
+            return Response({'message': f'You are now following {target_user.name}'}, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HHTP_404_NOT_FOUND)
+
+class UnfollowUserView(APIView):
+    permission_classes = [permission.IsAuthenticated]
+
+    def post(self, request, user_id):
+        try:
+            target_user = User.objects.get(id=user_id)
+            request.user.following.remove(target_user)
+            return Response({'message': f'You have unfollowed {target_user.username}'}, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
