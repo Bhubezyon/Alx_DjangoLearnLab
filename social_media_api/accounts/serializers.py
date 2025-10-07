@@ -23,4 +23,4 @@ class LoginSerializer(serializers.Serializer):
         if user:
             token, _ = Token.objects.get_or_create(user=user)
             return {'token': token.key}
-        raise serializers.ValidationError("Invalid credentials")
+        raise serializers.ValidationError("Invalid credentials")   
