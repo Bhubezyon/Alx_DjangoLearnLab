@@ -61,8 +61,9 @@ class UnlikePostView(APIView):
     permission_classes = [permissionAuthenticated]
 
     def post(self, request, pk):
+        post = generics.get_object_or_404(Post, pk=pk)
         try:
-            like = Like.object.get(user=request.user, post_id=pk)
+            like = Like.objects.get(user=request.user, post=post)
             like.delete()
             return Response({'message': 'Post unliked'}, status=status.HTTP_200_OK)
         except LikeDoesNotExist:
