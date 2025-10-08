@@ -1,3 +1,28 @@
+import os
+from pathlib import Path
+import dj_database_urls
+import django_heroku
+
+django_heroku.settings(locals())
+
+DEBUG = False
+ALLOWED_HOSTS = ['social_media_api.herokuapp.com']
+
+# Sercurity
+SECURE_BROWSER_XSS_FILTER = true
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True
+
+# Static files
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Databases
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
